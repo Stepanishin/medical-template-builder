@@ -76,7 +76,7 @@ export default function TemplateEditor({ template, onContentChange }: TemplateEd
                 </label>
                 {variable.type === 'select' && variable.options ? (
                   <select
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 bg-white"
                     value={variable.value}
                     onChange={(e) => handleVariableChange(index, e.target.value)}
                   >
@@ -90,7 +90,7 @@ export default function TemplateEditor({ template, onContentChange }: TemplateEd
                 ) : (
                   <input
                     type="text"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 bg-white"
                     placeholder={variable.placeholder || `Введите ${variable.name}`}
                     value={variable.value}
                     onChange={(e) => handleVariableChange(index, e.target.value)}
@@ -107,7 +107,7 @@ export default function TemplateEditor({ template, onContentChange }: TemplateEd
           Текст шаблона:
         </label>
         <textarea
-          className="w-full h-96 p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none font-mono text-sm"
+          className="w-full h-96 p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none font-mono text-sm text-gray-900 bg-white"
           value={content}
           onChange={(e) => handleDirectEdit(e.target.value)}
           placeholder="Текст шаблона с переменными..."
