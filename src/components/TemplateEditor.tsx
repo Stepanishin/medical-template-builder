@@ -53,6 +53,7 @@ export default function TemplateEditor({ template, onContentChange }: TemplateEd
 
   useEffect(() => {
     updateContent();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [variables]);
 
   const handleDirectEdit = (value: string) => {

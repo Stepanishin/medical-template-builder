@@ -13,7 +13,7 @@ async function checkAuth(request: NextRequest) {
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const isAuthenticated = await checkAuth(request);
@@ -29,8 +29,9 @@ export async function PUT(
       return NextResponse.json({ error: 'Name and content are required' }, { status: 400 });
     }
 
+    const resolvedParams = await params;
     const template = await Template.findByIdAndUpdate(
-      params.id,
+      resolvedParams.id,
       {
         name: name.trim(),
         content,
@@ -52,7 +53,7 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const isAuthenticated = await checkAuth(request);
@@ -62,7 +63,8 @@ export async function DELETE(
 
     await dbConnect();
     
-    const template = await Template.findByIdAndDelete(params.id);
+    const resolvedParams = await params;
+    const template = await Template.findByIdAndDelete(resolvedParams.id);
 
     if (!template) {
       return NextResponse.json({ error: 'Template not found' }, { status: 404 });
